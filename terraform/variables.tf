@@ -1,6 +1,6 @@
 variable "project_name" {
   default = "tac"
-  type = string
+  type    = string
 }
 
 variable "email_host_user" {

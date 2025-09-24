@@ -25,10 +25,21 @@ resource "kubernetes_deployment" "backend" {
             container_port = 8000
           }
 
+          volume_mount {
+            name       = "firebase-key"
+            mount_path = "/app/firebase_key.json"
+            sub_path   = "firebase_key.json"
+          }
           env_from {
             secret_ref {
               name = "${var.project_name}-backend-secrets"
             }
+          }
+        }
+         volume {
+          name = "firebase-key"
+          secret {
+            secret_name = kubernetes_secret.firebase_key.metadata[0].name
           }
         }
       }
@@ -53,5 +64,15 @@ resource "kubernetes_service" "backend" {
   }
 }
 
+resource "kubernetes_secret" "firebase_key" {
+  metadata {
+    name      = "firebase-key"
+    namespace = "default"
+  }
+
+  data = {
+    "firebase_key.json" = file("${path.module}/firebase_key.json")
+  }
+}
 
 

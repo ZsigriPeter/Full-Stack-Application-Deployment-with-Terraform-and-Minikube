@@ -37,3 +37,4 @@ override.tf.json
 terraform.rc
 
 help.md
+terraform/modules/backend/firebase_key.json
