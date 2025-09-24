@@ -1,0 +1,12 @@
+project_name        = "tac"
+backend_image       = "your-dockerhub-user/backend-tac:latest"
+frontend_image      = "your-dockerhub-user/frontend-tac:latest"
+
+email_backend       = "django.core.mail.backends.smtp.EmailBackend"
+email_host          = "smtp.example.com"
+email_port          = "587"
+email_host_user     = "your-email@example.com"
+email_host_password = "your-email-password"
+email_use_tls       = "True"
+email_use_ssl       = "False"
+default_from_email  = "Team Calendar App <your-email@example.com>"
