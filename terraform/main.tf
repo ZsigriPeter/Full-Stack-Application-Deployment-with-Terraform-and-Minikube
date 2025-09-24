@@ -19,3 +19,9 @@ module "frontend" {
     project_name   = var.project_name
     frontend_image = var.frontend_image
 }
+
+module "ingress" {
+  source       = "./modules/ingress"
+  
+  project_name = var.project_name
+}
