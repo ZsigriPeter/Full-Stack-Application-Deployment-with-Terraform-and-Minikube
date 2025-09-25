@@ -1,16 +1,15 @@
 resource "kubernetes_ingress_v1" "app" {
   metadata {
     name = "${var.project_name}-ingress"
-    annotations = {
-      "nginx.ingress.kubernetes.io/rewrite-target" = "/$1"
-    }
   }
 
   spec {
     rule {
+      host = "tac.local" 
       http {
+        # Frontend path
         path {
-          path      = "/?(.*)"
+          path      = "/"
           path_type = "Prefix"
 
           backend {
@@ -23,8 +22,9 @@ resource "kubernetes_ingress_v1" "app" {
           }
         }
 
+        # Backend API path
         path {
-          path      = "/api/?(.*)"
+          path      = "/api/"
           path_type = "Prefix"
 
           backend {
